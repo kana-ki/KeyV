@@ -24,7 +24,7 @@ namespace KeyV {
         public void AltTab () {
             this.ClearModifiers();
             SendKeys.SendWait("%{TAB}");
-            Thread.Sleep(15);
+            Thread.Sleep(100);
         }
 
         public void PressKeys (string str) {
