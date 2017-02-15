@@ -69,5 +69,15 @@ namespace KeyV.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Icon_lit {
+            get {
+                object obj = ResourceManager.GetObject("Icon_lit", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

@@ -62,7 +62,6 @@ namespace KeyV {
 
         public void Dispose() {
             this.UnregisterGlobalHotKey();
-            base.Dispose();
         }
 
     }
