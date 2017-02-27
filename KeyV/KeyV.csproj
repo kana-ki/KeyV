@@ -55,10 +55,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Keyboard.cs" />
-    <Compile Include="GlobalHotkey.cs">
+    <Compile Include="Keyboard\HookType.cs" />
+    <Compile Include="Keyboard\KeyboardMessage.cs" />
+    <Compile Include="Keyboard\KeyAction.cs" />
+    <Compile Include="Keyboard\KeyState.cs" />
+    <Compile Include="Keyboard\PreventReleaseDelegate.cs" />
+    <Compile Include="Keyboard\KeyboardWriter.cs" />
+    <Compile Include="Keyboard\KeyboardHotkey.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Keyboard\KeyboardHookCallback.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

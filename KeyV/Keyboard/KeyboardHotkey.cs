@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace KeyV {
 
-    public class GlobalHotkey : Control {
+    public class KeyboardHotkey : Control {
 
         [DllImport("user32", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]

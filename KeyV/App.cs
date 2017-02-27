@@ -4,23 +4,24 @@ using System.Diagnostics;
 using System.IO.Pipes;
 using System.Threading;
 using System.Windows.Forms;
+using KeyV.Keyboard;
 using KeyV.Properties;
 
 namespace KeyV {
 
     public class App {
 
-        private readonly Keyboard _keyboard;
+        private readonly Keyboard.KeyboardWriter _keyboard;
         private readonly NotifyIcon _notifyIcon;
-        private readonly GlobalHotkey _globalHotkey;
+        private readonly KeyboardHotkey _keyboardHotkey;
         private readonly Dictionary <byte, Action> _ipcCommands;
         private bool _drawingAttention = false;
 
         public App() {
             this.PollForIpc();
             this._notifyIcon = this.CreateIcon();
-            this._keyboard = new Keyboard();
-            this._globalHotkey = this.RegisterHotkey();
+            this._keyboard = new Keyboard.KeyboardWriter();
+            this._keyboardHotkey = this.RegisterHotkey();
             this._ipcCommands = new Dictionary<byte, Action> {
                 { 0x10, this.DrawAttention }
             };
@@ -102,9 +103,9 @@ namespace KeyV {
             this.ExecuteKeyV();
         }
 
-        private GlobalHotkey RegisterHotkey() {
-            var hotkey = new GlobalHotkey();
-            hotkey.RegisterGlobalHotKey((int)Keys.V, GlobalHotkey.MOD_CONTROL | GlobalHotkey.MOD_ALT);
+        private KeyboardHotkey RegisterHotkey() {
+            var hotkey = new KeyboardHotkey();
+            hotkey.RegisterGlobalHotKey((int)Keys.V, KeyboardHotkey.MOD_CONTROL | KeyboardHotkey.MOD_ALT);
             hotkey.HotKeyPressed += this.ExecuteKeyV;
             return hotkey;
         }
@@ -119,13 +120,13 @@ namespace KeyV {
 
         private void Exit () {
             this._notifyIcon.Visible = false;
-            this._globalHotkey.UnregisterGlobalHotKey();
+            this._keyboardHotkey.UnregisterGlobalHotKey();
             Application.Exit();
         }
 
         ~App() {
             this._notifyIcon?.Dispose();
-            this._globalHotkey?.Dispose();
+            this._keyboardHotkey?.Dispose();
         }
 
         [STAThread]
